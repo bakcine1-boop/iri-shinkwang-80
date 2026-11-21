@@ -19,7 +19,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable-dynamic-subset.min.css">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@400;500;600&display=swap">
-<link rel="stylesheet" href="css/style.css?v=8">
+<link rel="stylesheet" href="css/style.css?v=13">
 <link rel="preload" as="image" href="img/hero-poster-1600.webp">
 </head>
 <body>
@@ -35,6 +35,7 @@
         <li><a href="#voices">성도들의 고백</a></li>
         <li><a href="#today">오늘의 신광</a></li>
         <li><a href="#anniversary">80주년 기념주일</a></li>
+        <li><a href="#nextgen">다음 세대</a></li>
         <li><a href="#mission">선교 100년</a></li>
       </ul>
     </nav>
@@ -50,6 +51,7 @@
     <li><a href="#today">오늘의 신광</a></li>
     <li><a href="#anniversary">80주년 기념주일</a></li>
     <li><a href="#documentary">기념 다큐멘터리</a></li>
+    <li><a href="#nextgen">다음 세대에게</a></li>
     <li><a href="#mission">선교 100년</a></li>
   </ol>
   <p>이리신광교회 · 전북 익산시 고봉로 60 · 063-850-4114</p>
@@ -66,7 +68,7 @@
     <h1 class="rv d1">은혜 <em>80</em>년,<span class="l2">선교 <em>100</em>년</span></h1>
     <div class="hero-meta rv d2">
       <span class="years">1946. 6. 2. 신흥동 YMCA 회관</span>
-      <p>마흔다섯 성도의 이름으로 시작된 교회가 여든 해를 건너 익산을 섬기는 교회가 되었습니다. 그 은혜의 시간을 기록합니다.</p>
+      <p>이상휘 장로와 마흔다섯 성도의 이름으로 시작된 교회가 여든 해를 건너 익산을 섬기는 교회가 되었습니다. 그 은혜의 시간을 기록합니다.</p>
       <span class="scroll-cue" aria-hidden="true"><i></i>SCROLL</span>
     </div>
   </div>
@@ -90,10 +92,10 @@
     </div>
 
     <div class="film rv">
-      <button class="yt" data-yt="Gf-5MkrHa5E" aria-label="80주년 기념영상 재생">
+      <div class="yt" data-yt="Gf-5MkrHa5E" role="button" tabindex="0" aria-label="80주년 기념영상 재생">
         <img src="img/aerial-mado-1600.webp" alt="" loading="lazy">
         <span class="play"><i></i><span>80주년 기념영상<small>5분 39초</small></span></span>
-      </button>
+      </div>
       <div class="film-cap"><span><strong>이리신광교회 80주년 기념영상</strong> · 한 가정의 거실에서 시작해 한 도시에 닿기까지</span><span>2026</span></div>
     </div>
   </div>
@@ -103,24 +105,30 @@
 <section class="sec story" id="story">
   <div class="wrap">
     <div class="sec-head">
-      <div class="rv"><p class="kicker"><b>01</b> 80년의 이야기</p><h2 class="h2">다섯 개의 장으로<br>읽는 여든 해</h2></div>
-      <p class="lead rv d1">교회의 공식 연혁과 성도들의 기억을 함께 엮었습니다. 날짜와 수치는 이리신광교회 연혁을 기준으로 삼았고, 따옴표 안의 말은 80주년 기념 다큐멘터리 인터뷰에서 옮겼습니다.</p>
+      <div class="rv"><p class="kicker"><b>01</b> 80년의 이야기</p><h2 class="h2">다섯 장면으로<br>걸어 보는 여든 해</h2></div>
+      <p class="lead rv d1">천천히 내려가며 한 시대씩 걸어 보세요. 날짜와 수치는 이리신광교회 공식 연혁을 따랐고, 따옴표 안의 말은 80주년 기념 다큐멘터리 인터뷰에서 옮겼습니다. 시대마다 자세한 연혁은 펼쳐 볼 수 있습니다.</p>
     </div>
 
-    <!-- CH 1 -->
-    <article class="chap" id="ch1">
-      <div class="chap-side rv">
+  </div>
+    <nav class="rail" aria-label="시대 바로가기"><a href="#ch1" data-r="ch1">1946</a><a href="#ch2" data-r="ch2">1961</a><a href="#ch3" data-r="ch3">1993</a><a href="#ch4" data-r="ch4">2008</a><a href="#ch5" data-r="ch5">2022</a></nav>
+  <article class="scene" id="ch1">
+    <div class="scene-bg" aria-hidden="true"><img class="poster" src="img/scene1-poster.webp" alt="" loading="lazy"><video class="bgv" muted playsinline loop preload="none" data-src="video/scene1.mp4" aria-hidden="true"></video></div>
+    <div class="scene-in wrap">
+      <div class="scene-card rv">
         <span class="chap-no">제1장 · 뿌리</span>
-        <p class="chap-years">1946<span>— 1961</span></p>
-        <h3>마흔다섯 사람의 이름으로</h3>
-        <p>해방 이듬해 봄, 이리 고현교회의 이상휘 장로와 성도 마흔다섯 명이 분립을 청원했습니다. 1946년 6월 2일 오후 1시, 신흥동 YMCA 회관에서 이리신광교회의 첫 예배가 드려졌습니다.</p>
+        <p class="scene-years">1946<span>— 1961</span></p>
+        <h3>이상휘 장로와 마흔다섯 성도</h3>
+        <p class="scene-p">해방 이듬해, 이리 고현교회의 이상휘 장로와 성도 마흔다섯 명이 분립을 청원했습니다. 1946년 6월 2일 오후 1시, 신흥동 YMCA 회관에서 이리신광교회의 첫 예배가 드려졌습니다.</p>
+        
       </div>
-      <div class="chap-main">
-        <figure class="rv">
-          <div class="ph r-wide"><img src="img/old-church-960.webp" srcset="img/old-church-960.webp 960w, img/old-church-1600.webp 1600w" sizes="(max-width:900px) 100vw, 60vw" alt="창인동 시절 석조 예배당 흑백 사진" loading="lazy"></div>
-          <figcaption>창인동 시절의 석조 예배당 · 80주년 기념영상 중에서</figcaption>
-        </figure>
-        <ul class="events rv">
+      <p class="scene-cap">창인동 시절의 석조 예배당 · 80주년 기념영상 중에서</p>
+    </div>
+  </article>
+  <div class="scene-more"><div class="wrap">
+    <details>
+      <summary><span>1946–1961 연혁 자세히 보기</span><em>6개 기록</em></summary>
+      <div class="more-body">
+        <ul class="events">
           <li><time>1946. 5. 7.</time><span>이리 고현교회 이상휘 외 45명의 이름으로 <b>분립 청원</b></span></li>
           <li><time>1946. 6. 2.</time><span>신흥동 YMCA 회관에서 <b>분립예배</b> · 여전도회 조직</span></li>
           <li><time>1946. 9. 28.</time><span>북창동(창인동 1가) 삼중농장 인수, 1949년 이곳으로 예배 처소를 옮김</span></li>
@@ -128,35 +136,28 @@
           <li><time>1950. 6. 5.</time><span><b>신광유치원</b> 개원</span></li>
           <li><time>1951. 6. 19.</time><span>창인동 1가 신축 예배당 헌당 · 100평 석조 건물</span></li>
         </ul>
-        <div class="note rv">
-          <i class="emb" aria-hidden="true"></i>
-          <div>
-            <h4>초대 장로 이상휘</h4>
-            <p>교회를 세운 이상휘 장로의 가문은 순교의 신앙을 품고 있습니다. 동생 이상태 안수집사는 신사참배를 거부하다 서대문형무소에 수감되었고, 1943년 옥중에서 세상을 떠났다고 가문은 전합니다.</p>
-            <small>출처: 본헤럴드 기사, 이상휘 장로 아들 이대희 목사의 기록</small>
-          </div>
-        </div>
+        <div class="note"><i class="emb" aria-hidden="true"></i><div><h4>초대 장로 이상휘</h4><p>교회를 세운 이상휘 장로의 가문은 순교의 신앙을 품고 있습니다. 동생 이상태 안수집사는 신사참배를 거부하다 서대문형무소에 수감되었고, 1943년 옥중에서 세상을 떠났다고 가문은 전합니다.</p><small>출처: 본헤럴드 기사, 이상휘 장로 아들 이대희 목사의 기록</small></div></div>
       </div>
-    </article>
-
-    <!-- CH 2 -->
-    <article class="chap" id="ch2">
-      <div class="chap-side rv">
+    </details>
+  </div></div>
+  <article class="scene" id="ch2">
+    <div class="scene-bg" aria-hidden="true"><img class="poster kb" src="img/ahn-plaque-1400.webp" alt="" loading="lazy"></div>
+    <div class="scene-in wrap">
+      <div class="scene-card rv">
         <span class="chap-no">제2장 · 목자</span>
-        <p class="chap-years">1961<span>— 1993</span></p>
+        <p class="scene-years">1961<span>— 1993</span></p>
         <h3>만우 안경운 목사의 서른한 해</h3>
-        <p>1961년 부임한 제4대 안경운 목사는 1993년 소천할 때까지 31년 넘게 교회를 섬겼습니다. 이리역 폭발의 폐허 위에서 예배당을 다시 세웠고, 1982년에는 대한예수교장로회(통합) 총회장으로 섬겼습니다. 성도들은 지금도 그의 청빈과 겸손을 이야기합니다.</p>
+        <p class="scene-p">제4대 안경운 목사는 1993년 소천할 때까지 31년 넘게 교회를 섬겼습니다. 이리역 폭발의 상처 위에서 예배당을 다시 세웠고, 1982년 대한예수교장로회(통합) 총회장으로 섬겼습니다.</p>
+        <blockquote class="scene-q"><p>“장로님, 저는 신광교회의 머슴입니다. 머슴이 나가서 번 돈은 주인 것 아닙니까?”</p><footer>부흥집회 사례금을 봉투째 교회에 바치던 안경운 목사 · 진의선 권사의 회고</footer></blockquote>
       </div>
-      <div class="chap-main">
-        <figure class="rv">
-          <div class="ph r-wide"><img src="img/ahn-plaque-800.webp" srcset="img/ahn-plaque-800.webp 800w, img/ahn-plaque-1400.webp 1400w" sizes="(max-width:900px) 100vw, 60vw" alt="만우 안경운 목사 기념 액자" loading="lazy"></div>
-          <figcaption>만우 안경운 목사(1961–1993 시무)</figcaption>
-        </figure>
-        <blockquote class="pull rv">
-          <p>“장로님, 저는 신광교회의 머슴입니다. 머슴이 나가서 번 돈은 주인 것 아닙니까?”</p>
-          <footer>부흥집회 사례금을 봉투째 교회에 바치던 안경운 목사의 말 · 진의선 권사의 회고</footer>
-        </blockquote>
-        <ul class="events rv">
+      <p class="scene-cap">만우 안경운 목사(1961–1993 시무)</p>
+    </div>
+  </article>
+  <div class="scene-more"><div class="wrap">
+    <details>
+      <summary><span>1961–1993 연혁 자세히 보기</span><em>6개 기록</em></summary>
+      <div class="more-body">
+        <ul class="events">
           <li><time>1961. 11. 2.</time><span>제4대 안경운 목사 부임</span></li>
           <li><time>1977. 11. 11.</time><span><b>이리역 폭발사고</b>로 본 교회당과 교육관, 목사 사택이 피해를 입음</span></li>
           <li><time>1981. 6. 26.</time><span>창인동 새 성전 헌당 · 지하 1층, 지상 4층</span></li>
@@ -164,31 +165,29 @@
           <li><time>1991. 10. 23.</time><span>사회복지법인 <b>신광복지재단</b> 설립인가 · 전라북도 제1호</span></li>
           <li><time>1993. 1. 21.</time><span>안경운 목사 별세 · 총회장(葬)으로 장례</span></li>
         </ul>
-        <div class="duo rv">
-          <figure><div class="ph r-32"><img src="img/grave-800.webp" alt="안경운 목사와 홍선자 사모의 묘비" loading="lazy"></div><figcaption>안경운 목사 부부의 묘</figcaption></figure>
-          <figure><div class="ph r-32"><img src="img/wreck-960.webp" alt="1977년 이리역 폭발사고 현장" loading="lazy"></div><figcaption>1977년 이리역 폭발사고 현장</figcaption></figure>
-        </div>
-        <blockquote class="pull rv">
-          <p>“죽어도 하나님 성전에서 죽는 게 복이다. 가다가 죽을 판인데 어딜 가. 가만히 있어라.”</p>
-          <footer>1977년 11월 11일 밤, 사택에서 폭발을 겪은 심석순 집사의 기억</footer>
-        </blockquote>
+        <blockquote class="pull"><p>“죽어도 하나님 성전에서 죽는 게 복이다. 가다가 죽을 판인데 어딜 가. 가만히 있어라.”</p><footer>1977년 11월 11일 밤, 사택에서 폭발을 겪은 심석순 집사의 기억</footer></blockquote>
+          <div class="duo"><figure><div class="ph r-32"><img src="img/grave-800.webp" alt="안경운 목사 부부의 묘비" loading="lazy"></div><figcaption>안경운 목사 부부의 묘</figcaption></figure><figure><div class="ph r-32"><img src="img/old-church-960.webp" alt="창인동 시절 예배당" loading="lazy"></div><figcaption>창인동 시절의 예배당</figcaption></figure></div>
       </div>
-    </article>
-
-    <!-- CH 3 -->
-    <article class="chap" id="ch3">
-      <div class="chap-side rv">
+    </details>
+  </div></div>
+  <article class="scene" id="ch3">
+    <div class="scene-bg" aria-hidden="true"><img class="poster" src="img/scene3-poster.webp" alt="" loading="lazy"><video class="bgv" muted playsinline loop preload="none" data-src="video/scene3.mp4" aria-hidden="true"></video></div>
+    <div class="scene-in wrap">
+      <div class="scene-card rv">
         <span class="chap-no">제3장 · 섬김</span>
-        <p class="chap-years">1993<span>— 2008</span></p>
+        <p class="scene-years">1993<span>— 2008</span></p>
         <h3>담장 밖으로 넓어진 교회</h3>
-        <p>목자를 갑자기 잃은 슬픔 속에서도 교회는 흔들리지 않았습니다. 양로시설 신광의 집과 노인종합복지관, 요양원이 차례로 문을 열었고, 희년을 맞아 새 교회를 개척했습니다.</p>
+        <p class="scene-p">목자를 갑자기 잃은 슬픔 속에서도 교회는 흔들리지 않았습니다. 양로시설 신광의 집과 노인종합복지관, 요양원이 차례로 문을 열었고, 희년을 맞아 새 교회를 개척했습니다.</p>
+        <blockquote class="scene-q"><p>“앞으로도 안 목사님이 안 계신 신광교회는 없을 거예요. 저는 그렇게 생각합니다.”</p><footer>박공열 원로장로</footer></blockquote>
       </div>
-      <div class="chap-main">
-        <figure class="rv">
-          <div class="ph r-wide"><img src="img/manwoo-ext-960.webp" srcset="img/manwoo-ext-960.webp 960w, img/manwoo-ext-1600.webp 1600w" sizes="(max-width:900px) 100vw, 60vw" alt="신광의 집 경내 만우기념예배당" loading="lazy"></div>
-          <figcaption>신광의 집 경내의 만우(고 안경운 목사)기념예배당 · 2000년 봉헌</figcaption>
-        </figure>
-        <ul class="events rv">
+      <p class="scene-cap">신광의 집 경내 만우기념예배당 · 2000년 봉헌</p>
+    </div>
+  </article>
+  <div class="scene-more"><div class="wrap">
+    <details>
+      <summary><span>1993–2008 연혁 자세히 보기</span><em>7개 기록</em></summary>
+      <div class="more-body">
+        <ul class="events">
           <li><time>1994. 3. 19.</time><span>제5대 손길룡 목사 부임</span></li>
           <li><time>1995. 2. 20.</time><span>양로시설 <b>신광의 집</b> 준공</span></li>
           <li><time>1996. 6. 2.</time><span>창립 50주년 희년 기념예배 · 7월 희년기념 <b>성문교회</b> 개척</span></li>
@@ -197,31 +196,28 @@
           <li><time>2005.</time><span>익산노인종합복지관 개관(7. 28.) · 신광요양원 개원(9. 1.)</span></li>
           <li><time>2006. 2. 16.</time><span>마동 새 성전 기공예배</span></li>
         </ul>
-        <blockquote class="pull rv">
-          <p>“앞으로도 안 목사님이 안 계신 신광교회는 없을 거예요. 저는 그렇게 생각합니다.”</p>
-          <footer>박공열 원로장로</footer>
-        </blockquote>
+        
       </div>
-    </article>
-
-    <!-- CH 4 -->
-    <article class="chap" id="ch4">
-      <div class="chap-side rv">
+    </details>
+  </div></div>
+  <article class="scene" id="ch4">
+    <div class="scene-bg" aria-hidden="true"><img class="poster" src="img/scene4-poster.webp" alt="" loading="lazy"><video class="bgv" muted playsinline loop preload="none" data-src="video/scene4.mp4" aria-hidden="true"></video></div>
+    <div class="scene-in wrap">
+      <div class="scene-card rv">
         <span class="chap-no">제4장 · 마동</span>
-        <p class="chap-years">2008<span>— 2021</span></p>
+        <p class="scene-years">2008<span>— 2021</span></p>
         <h3>교회 같지 않은 교회</h3>
-        <p>2008년 10월 5일, 교회는 마동 새 성전에 입당했습니다. 종탑 대신 체육관과 잔디 운동장을, 첨탑 대신 카페와 도서관을 세웠습니다. 누구나 문턱 없이 들어올 수 있는 교회를 꿈꾼 결과입니다.</p>
+        <p class="scene-p">2008년 10월 5일, 교회는 마동 새 성전에 입당했습니다. 종탑 대신 체육관과 잔디 운동장을, 첨탑 대신 카페와 도서관을 세웠습니다. 누구나 문턱 없이 들어올 수 있는 교회를 꿈꾼 결과입니다.</p>
+        <blockquote class="scene-q"><p>“이 교회를 지으면서 생각한 건 ‘교회 같지 않은 교회, 누구나 올 수 있는 교회, 믿지 않는 사람들이 좋아하는 교회’였어요.”</p><footer>김홍국 장로 · 마동 성전 건축위원장</footer></blockquote>
       </div>
-      <div class="chap-main">
-        <figure class="rv">
-          <div class="ph r-wide"><img src="img/hero-960.webp" srcset="img/hero-960.webp 960w, img/hero-1600.webp 1600w" sizes="(max-width:900px) 100vw, 60vw" alt="잔디 운동장을 품은 마동 성전 항공 사진" loading="lazy"></div>
-          <figcaption>잔디 운동장을 가운데 품은 마동 성전</figcaption>
-        </figure>
-        <blockquote class="pull rv">
-          <p>“이 교회를 지으면서 생각한 건 ‘교회 같지 않은 교회, 누구나 올 수 있는 교회, 믿지 않는 사람들이 좋아하는 교회’였어요. … 건물은 메시지입니다.”</p>
-          <footer>김홍국 장로 · 마동 성전 건축위원장</footer>
-        </blockquote>
-        <ul class="events rv">
+      <p class="scene-cap">주일의 마동 성전 로비</p>
+    </div>
+  </article>
+  <div class="scene-more"><div class="wrap">
+    <details>
+      <summary><span>2008–2021 연혁 자세히 보기</span><em>6개 기록</em></summary>
+      <div class="more-body">
+        <ul class="events">
           <li><time>2008. 10. 5.</time><span><b>마동 성전 입당예배</b> · 하용조 목사(온누리교회) 설교</span></li>
           <li><time>2008. 12. 7.</time><span>마동 성전 도서관 개관</span></li>
           <li><time>2015. 6. 7.</time><span>마동 성전 <b>헌당예배</b></span></li>
@@ -229,27 +225,28 @@
           <li><time>2018. 9. 10.</time><span>대한예수교장로회 <b>제103회 총회</b> 개최(13일까지)</span></li>
           <li><time>2021. 10. 10.</time><span>익산시 북부권 노인종합복지관 개관 감사예배</span></li>
         </ul>
-        <div class="duo rv">
-          <figure><div class="ph r-32"><img src="img/lobby-960.webp" alt="마동 성전 로비" loading="lazy"></div><figcaption>주일의 로비</figcaption></figure>
-          <figure><div class="ph r-32"><img src="img/kids-nook-960.webp" alt="새빛도서관 어린이 열람 공간" loading="lazy"></div><figcaption>새빛도서관</figcaption></figure>
-        </div>
+        <div class="duo"><figure><div class="ph r-32"><img src="img/hero-960.webp" alt="마동 성전 항공 사진" loading="lazy"></div><figcaption>잔디 운동장을 품은 마동 성전</figcaption></figure><figure><div class="ph r-32"><img src="img/kids-nook-960.webp" alt="새빛도서관 어린이 열람 공간" loading="lazy"></div><figcaption>새빛도서관</figcaption></figure></div>
       </div>
-    </article>
-
-    <!-- CH 5 -->
-    <article class="chap" id="ch5">
-      <div class="chap-side rv">
+    </details>
+  </div></div>
+  <article class="scene" id="ch5">
+    <div class="scene-bg" aria-hidden="true"><img class="poster" src="img/scene5-poster.webp" alt="" loading="lazy"><video class="bgv" muted playsinline loop preload="none" data-src="video/scene5.mp4" aria-hidden="true"></video></div>
+    <div class="scene-in wrap">
+      <div class="scene-card rv">
         <span class="chap-no">제5장 · 목장</span>
-        <p class="chap-years">2022<span>— 2026</span></p>
+        <p class="scene-years">2022<span>— 2026</span></p>
         <h3>작은 교회들, 그리고 선교 100년</h3>
-        <p>제7대 권오국 목사와 함께 교회는 목장교회로의 전환을 결단했습니다. 주일이 지나면 거실마다 작은 예배가 열립니다. 밥을 나누고 삶을 나누는 목장이 곧 교회입니다.</p>
+        <p class="scene-p">제7대 권오국 목사와 함께 교회는 목장교회로의 전환을 결단했습니다. 주일이 지나면 거실마다 작은 예배가 열립니다. 밥을 나누고 삶을 나누는 목장이 곧 교회입니다.</p>
+        <blockquote class="scene-q"><p>“‘교회’라는 말이 예전에는 무겁게 느껴졌는데, 이제는 따뜻한 말로 바뀌었어요.”</p><footer>임익성 집사</footer></blockquote>
       </div>
-      <div class="chap-main">
-        <figure class="rv">
-          <div class="ph r-wide"><img src="img/home-1-960.webp" srcset="img/home-1-960.webp 960w, img/home-1-1600.webp 1600w" sizes="(max-width:900px) 100vw, 60vw" alt="가정에서 함께 식사를 준비하는 목장 식구들" loading="lazy"></div>
-          <figcaption>한 가정의 거실에서 열리는 목장 모임</figcaption>
-        </figure>
-        <ul class="events rv">
+      <p class="scene-cap">한 가정의 거실에서 열리는 목장 모임</p>
+    </div>
+  </article>
+  <div class="scene-more"><div class="wrap">
+    <details>
+      <summary><span>2022–2026 연혁 자세히 보기</span><em>6개 기록</em></summary>
+      <div class="more-body">
+        <ul class="events">
           <li><time>2022. 1. 2.</time><span>제7대 권오국 목사 부임 · 6월 5일 위임</span></li>
           <li><time>2024. 3. 17.</time><span><b>주일 목장예배</b> 시작</span></li>
           <li><time>2025. 2. 2.</time><span><b>목장교회 개척식</b></span></li>
@@ -257,17 +254,10 @@
           <li><time>2026. 8.</time><span>80주년 특별한 밤 부흥회 ‘Awaken’</span></li>
           <li><time>2026. 10. 24.</time><span>80주년 임직예식 · 장로 7명, 안수집사 32명, 권사 83명</span></li>
         </ul>
-        <blockquote class="pull rv">
-          <p>“‘교회’라는 말이 예전에는 무겁게 느껴졌는데, 이제는 따뜻한 말로 바뀌었어요. 가족 같다는 느낌이 많이 들어요.”</p>
-          <footer>임익성 집사</footer>
-        </blockquote>
-        <div class="duo rv">
-          <figure><div class="ph r-32"><img src="img/mk-plant-1400.webp" alt="2025년 목장교회 개척식" loading="lazy"></div><figcaption>2025년 2월 목장교회 개척식 · 교회 홈페이지</figcaption></figure>
-          <figure><div class="ph r-32"><img src="img/mk-kids-960.webp" alt="어린이 목장 모임" loading="lazy"></div><figcaption>어린이 목장</figcaption></figure>
-        </div>
+        <div class="duo"><figure><div class="ph r-32"><img src="img/mk-plant-1400.webp" alt="2025년 목장교회 개척식" loading="lazy"></div><figcaption>2025년 2월 목장교회 개척식 · 교회 홈페이지</figcaption></figure><figure><div class="ph r-32"><img src="img/mk-kids-960.webp" alt="어린이 목장 모임" loading="lazy"></div><figcaption>어린이 목장</figcaption></figure></div>
       </div>
-    </article>
-  </div>
+    </details>
+  </div></div>
 </section>
 
 <!-- SHEPHERDS -->
@@ -368,10 +358,10 @@
     </div>
 
     <div class="minis">
-      <div class="mini rv"><button class="yt" data-yt="fLuNm1-oNbs" aria-label="연합 찬양대와 셀라 오케스트라 영상 재생"><img src="https://i.ytimg.com/vi/fLuNm1-oNbs/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></button><h4>연합 찬양대 + 셀라 오케스트라</h4><p>2026. 6. 7. · 4분 47초</p></div>
-      <div class="mini rv d1"><button class="yt" data-yt="xsDLzSfsgK8" aria-label="할렐루야 찬양대 영상 재생"><img src="https://i.ytimg.com/vi/xsDLzSfsgK8/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></button><h4>할렐루야 찬양대</h4><p>2026. 6. 7. · 6분 35초</p></div>
-      <div class="mini rv d2"><button class="yt" data-yt="OAlatBTqOHc" aria-label="장덕순 은퇴목사 설교 영상 재생"><img src="img/a80-jang-1400.webp" alt="" loading="lazy"><span class="play"><i></i></span></button><h4>「남아 있는 사람」 장덕순 은퇴목사</h4><p>기념주일 2부 설교 · 20분 40초</p></div>
-      <div class="mini rv d3"><button class="yt" data-yt="scJd_ww5FQI" aria-label="기념주일 찬양예배 영상 재생"><img src="https://i.ytimg.com/vi/scJd_ww5FQI/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></button><h4>오후 찬양예배 「평강의 80년」</h4><p>홈커밍데이 · 임한열 목사 · 2026. 6. 7.</p></div>
+      <div class="mini rv"><div class="yt" data-yt="fLuNm1-oNbs" role="button" tabindex="0" aria-label="연합 찬양대와 셀라 오케스트라 영상 재생"><img src="https://i.ytimg.com/vi/fLuNm1-oNbs/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></div><h4>연합 찬양대 + 셀라 오케스트라</h4><p>2026. 6. 7. · 4분 47초</p></div>
+      <div class="mini rv d1"><div class="yt" data-yt="xsDLzSfsgK8" role="button" tabindex="0" aria-label="할렐루야 찬양대 영상 재생"><img src="https://i.ytimg.com/vi/xsDLzSfsgK8/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></div><h4>할렐루야 찬양대</h4><p>2026. 6. 7. · 6분 35초</p></div>
+      <div class="mini rv d2"><div class="yt" data-yt="OAlatBTqOHc" role="button" tabindex="0" aria-label="장덕순 은퇴목사 설교 영상 재생"><img src="img/a80-jang-1400.webp" alt="" loading="lazy"><span class="play"><i></i></span></div><h4>「남아 있는 사람」 장덕순 은퇴목사</h4><p>기념주일 2부 설교 · 20분 40초</p></div>
+      <div class="mini rv d3"><div class="yt" data-yt="scJd_ww5FQI" role="button" tabindex="0" aria-label="기념주일 찬양예배 영상 재생"><img src="https://i.ytimg.com/vi/scJd_ww5FQI/hqdefault.jpg" alt="" loading="lazy"><span class="play"><i></i></span></div><h4>오후 찬양예배 「평강의 80년」</h4><p>홈커밍데이 · 임한열 목사 · 2026. 6. 7.</p></div>
     </div>
 
     <div class="gal-head rv"><h3>그날의 장면들</h3><p>사진 · CTS전북방송 (일부 교회 홈페이지)</p></div>
@@ -409,11 +399,62 @@
   </div>
 </section>
 
+<!-- NEXT GENERATION -->
+<section class="sec nextgen" id="nextgen">
+  <div class="wrap">
+    <div class="sec-head">
+      <div class="rv"><p class="kicker"><b>07</b> 다음 세대에게</p><h2 class="h2">여든 해의 신앙을<br>아이들의 손에</h2></div>
+      <p class="lead rv d1">1950년 신광유치원을 연 교회는 지금도 아기부터 청년까지 한 지붕 아래에서 키워 냅니다. 창립 100주년을 맞을 2046년, 이 교회의 주인공은 지금의 아이들입니다.</p>
+    </div>
+
+    <div class="grow rv" aria-label="한 교회에서 자라는 길">
+      <p class="grow-label">아기부터 청년까지, 한 교회에서 자라는 길 <span class="swipe">옆으로 넘겨 보기 →</span></p>
+      <ol class="grow-path">
+        <li><b>아기학교 · 영아꿈터</b><span>16~36개월</span><p>아기와 보호자가 함께 드리는 첫 예배</p></li>
+        <li><b>유아 · 유치꿈터</b><span>4~7세</span><p>아이, 부모, 교사가 함께 자라는 예배 공동체</p></li>
+        <li><b>신광유치원</b><span>1950년 개원</span><p>76년째 이어 온 교회의 첫 다음 세대 기관</p></li>
+        <li><b>뉴젠스쿨</b><span>5~10세</span><p>영적·정서·지적·신체 영역을 고루 돕는 양육 과정</p></li>
+        <li><b>아동국 · 데이빗키즈</b><span>초등</span><p>어린이 예배와 Awana T&amp;T, 어린이 찬양 뮤지컬팀</p></li>
+        <li><b>중등청소년국</b><span>중학생</span><p>하브루타로 묻고 나누며 생각하는 신앙</p></li>
+        <li><b>고등청소년국</b><span>고등학생</span><p>브런치워십과 목장 모임, 입시와 진로를 함께 기도</p></li>
+        <li><b>여호수아 교구</b><span>20~39세</span><p>청년 목장 20개 · 주일 3부 더드림워십</p></li>
+      </ol>
+      <p class="grow-src">교회 홈페이지 차세대·교구 소개 기준</p>
+    </div>
+
+    <div class="letters">
+      <h3 class="sub rv">세대가 세대에게 <span class="swipe">옆으로 넘겨 보기 →</span></h3>
+      <div class="letter-row">
+        <article class="letter rv"><span class="to">어른이 다음 세대에게</span><p>“과학도, 문명도 우리가 따라갈 수 없을 만큼 빠르게 변하지만, 이 전통만큼은 지켜 줬으면 좋겠어요.”</p><footer>김경자 권사 · 1960년 첫 출석</footer></article>
+        <article class="letter rv d1"><span class="to">어른이 다음 세대에게</span><p>“어릴 때는 눈앞의 상황만 보이지만, 그 뒤에 계신 하나님을 보면 세상을 신뢰할 수 있고, 그 신뢰가 가슴속에 잔뿌리로 남아 있으면 큰 신앙의 거목이 될 수 있다고 생각합니다.”</p><footer>임익성 집사</footer></article>
+        <article class="letter rv d2"><span class="to">청년이 어른들께</span><p>“어른 세대가 청년들을 자녀처럼 여겨 주셨으면 좋겠어요. 기도하면 사랑하는 마음이 같이 따라오잖아요.”</p><footer>이연우 청년회장</footer></article>
+        <article class="letter rv d3"><span class="to">담임목사가 교회에게</span><p>“먼저 믿은 선배 그리스도인들의 섬김과 사랑과 헌신을 통해, 예수 믿는 삶이 무엇인지 삶으로 보고 배우는 것입니다.”</p><footer>권오국 담임목사 · 제자 양육에 대하여</footer></article>
+      </div>
+    </div>
+
+    <div class="ng-strip rv">
+      <figure class="ph" data-lb="img/ng-kidsday.webp" data-cap="어린이날 축제 · 2026. 5. 3. · 교회 홈페이지"><img src="img/ng-kidsday.webp" alt="어린이날 축제" loading="lazy"><figcaption>어린이날 축제</figcaption></figure>
+      <figure class="ph" data-lb="img/ng-camp.webp" data-cap="여름 새빛캠프 · 2026. 8. · 교회 홈페이지"><img src="img/ng-camp.webp" alt="여름 새빛캠프" loading="lazy"><figcaption>여름 새빛캠프</figcaption></figure>
+      <figure class="ph" data-lb="img/ng-xmas2.webp" data-cap="성탄절 발표회 · 2025. 12. 25. · 교회 홈페이지"><img src="img/ng-xmas2.webp" alt="성탄절 발표회" loading="lazy"><figcaption>성탄절 발표회</figcaption></figure>
+      <figure class="ph" data-lb="img/gym-kids-1600.webp" data-cap="체육관의 아이들"><img src="img/gym-kids-960.webp" alt="체육관의 아이들" loading="lazy"><figcaption>체육관</figcaption></figure>
+      <figure class="ph" data-lb="img/ng-suneung.webp" data-cap="고3 수능 응원 · 2026. 11. · 교회 홈페이지"><img src="img/ng-suneung.webp" alt="고3 수능 응원" loading="lazy"><figcaption>고3 수능 응원</figcaption></figure>
+    </div>
+
+    <div class="quiz rv" id="quiz" aria-live="polite">
+      <div class="quiz-head"><h3 class="sub">우리 교회 80년 퀴즈</h3><span class="quiz-step" id="quizStep">1 / 5</span></div>
+      <p class="quiz-q" id="quizQ"></p>
+      <div class="quiz-opts" id="quizOpts"></div>
+      <p class="quiz-fb" id="quizFb"></p>
+      <button class="quiz-next" id="quizNext" hidden>다음 문제 →</button>
+    </div>
+  </div>
+</section>
+
 <!-- MISSION -->
 <section class="sec mission" id="mission">
   <div class="wrap">
     <div class="sec-head">
-      <div class="rv"><p class="kicker"><b>07</b> 선교 100년</p><h2 class="h2">선교를 위해<br>존재하는 교회</h2></div>
+      <div class="rv"><p class="kicker"><b>08</b> 선교 100년</p><h2 class="h2">선교를 위해<br>존재하는 교회</h2></div>
       <p class="lead rv d1">개척 초기부터 교회는 이웃 마을에 교회를 세우고, 바다 건너 선교사를 보냈습니다. 80주년을 맞아 교회는 ‘선교 100년’을 다음 스무 해의 이름으로 삼았습니다.</p>
     </div>
     <div class="stats rv">
@@ -543,7 +584,7 @@
   <button class="nv next" aria-label="다음 사진">›</button>
 </dialog>
 
-<script src="js/voices.js?v=8"></script>
-<script src="js/main.js?v=8"></script>
+<script src="js/voices.js?v=13"></script>
+<script src="js/main.js?v=13"></script>
 </body>
 </html>
