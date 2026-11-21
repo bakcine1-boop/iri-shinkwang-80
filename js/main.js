@@ -9,8 +9,8 @@
   if (grid && window.VOICES) {
     grid.innerHTML = VOICES.map((v, i) => `
       <button class="vc rv d${i % 3}" data-v="${v.id}" aria-haspopup="dialog" aria-label="${v.name} ${v.role} 인터뷰 더 보기">
-        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp" srcset="img/${v.img}-480.webp 480w, img/${v.img}-800.webp 800w" sizes="(max-width:640px) 100vw, (max-width:900px) 50vw, 33vw" alt="${v.name} ${v.role}" loading="lazy"><q>${v.short}</q></span>
-        <span class="who"><span><b>${v.name}</b> <span>${v.role} · ${v.sub}</span></span><span class="more">더 읽기 →</span></span>
+        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp" alt="${v.name} ${v.role}" loading="lazy"></span>
+        <span><span class="who"><b>${v.name} ${v.role}</b><span class="r">${v.sub}</span></span><q>${v.short}</q><span class="more">인터뷰 더 읽기 →</span></span>
       </button>`).join('');
   }
 
