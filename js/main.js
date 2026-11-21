@@ -16,7 +16,7 @@
 
   /* ---------- nav / progress / active ---------- */
   const nav = $('#nav'), bar = $('.progress');
-  const darkSecs = $$('.hero, .dark, .doc, .epi');
+  const darkSecs = $$('.hero, .dark, .doc, .epi, .scene');
   const links = $$('.nav ul a');
   const secs = links.map(a => $(a.getAttribute('href'))).filter(Boolean);
   let ticking = false;
@@ -73,29 +73,101 @@
   const nv = $('#nightVideo');
   lazyVideo(nv, () => nv.dataset.src);
 
-  /* ---------- youtube facade ---------- */
-  const ytSrc = (id, start) => `https://www.youtube-nocookie.com/embed/${id}?autoplay=1&rel=0&modestbranding=1&playsinline=1${start ? '&start=' + start : ''}`;
-  function playYT(box, start) {
-    const id = box.dataset.yt;
-    let f = box.querySelector('iframe');
-    if (!f) {
-      f = document.createElement('iframe');
-      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen';
-      f.allowFullscreen = true; f.title = box.getAttribute('aria-label') || 'YouTube';
+  /* ---------- youtube (자막 끄기, 재생 제어) ---------- */
+  let ytReady = null;
+  const players = [];
+  function loadYT() {
+    if (ytReady) return ytReady;
+    ytReady = new Promise((res, rej) => {
+      if (window.YT && window.YT.Player) return res();
+      const prev = window.onYouTubeIframeAPIReady;
+      window.onYouTubeIframeAPIReady = () => { prev && prev(); res(); };
+      const s = document.createElement('script'); s.src = 'https://www.youtube.com/iframe_api'; s.onerror = rej; document.head.appendChild(s);
+      setTimeout(() => rej(new Error('yt timeout')), 8000);
+    });
+    return ytReady;
+  }
+  const noCC = p => { try { p.setOption('captions', 'track', {}); } catch (_) {} try { p.unloadModule('captions'); } catch (_) {} try { p.unloadModule('cc'); } catch (_) {} };
+  async function playYT(box, start) {
+    if (box._player && box._player.seekTo) { if (start != null) box._player.seekTo(+start, true); box._player.playVideo(); return; }
+    box.classList.add('on'); box.removeAttribute('role'); box.removeAttribute('tabindex');
+    const holder = document.createElement('div'); box.innerHTML = ''; box.appendChild(holder);
+    try {
+      await loadYT();
+      box._player = new YT.Player(holder, {
+        host: 'https://www.youtube-nocookie.com', videoId: box.dataset.yt, width: '100%', height: '100%',
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, cc_load_policy: 0, iv_load_policy: 3, hl: 'ko', start: start ? +start : 0 },
+        events: {
+          onReady: e => { noCC(e.target); e.target.playVideo(); },
+          onApiChange: e => noCC(e.target),
+          onStateChange: e => { if (e.data === 1) { noCC(e.target); players.forEach(p => { if (p !== e.target && p.pauseVideo) p.pauseVideo(); }); } }
+        }
+      });
+      players.push(box._player);
+    } catch (err) {
+      const f = document.createElement('iframe');
+      f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+      f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0&playsinline=1&cc_load_policy=0&iv_load_policy=3${start ? '&start=' + start : ''}`;
       box.innerHTML = ''; box.appendChild(f);
     }
-    f.src = ytSrc(id, start);
   }
   $$('.yt').forEach(b => {
-    const go = () => { if (!b.querySelector('iframe')) playYT(b); };
+    const go = () => { if (!b.classList.contains('on')) playYT(b); };
     b.addEventListener('click', go);
-    b.addEventListener('keydown', e => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); go(); } });
+    b.addEventListener('keydown', e => { if (!b.classList.contains('on') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); go(); } });
   });
   $$('.chip').forEach(c => c.addEventListener('click', () => {
     $$('.chip').forEach(x => x.classList.remove('on')); c.classList.add('on');
     const box = $('#liveBox'); playYT(box, c.dataset.t);
     const r = box.getBoundingClientRect(); if (r.top < 60 || r.top > innerHeight * .5) box.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
   }));
+
+  /* ---------- story scenes ---------- */
+  const scenes = $$('.scene');
+  $$('.scene .bgv').forEach(v => lazyVideo(v, () => v.dataset.src));
+  const rail = $('.rail'), railLinks = rail ? $$('a', rail) : [];
+  if ('IntersectionObserver' in window) {
+    const so = new IntersectionObserver(es => es.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('inview'); railLinks.forEach(a => a.classList.toggle('on', a.dataset.r === e.target.id)); }
+    }), { threshold: 0.45 });
+    scenes.forEach(s => so.observe(s));
+  } else scenes.forEach(s => s.classList.add('inview'));
+  if (rail) addEventListener('scroll', () => {
+    const mid = innerHeight * .5;
+    rail.classList.toggle('show', scenes.some(s => { const r = s.getBoundingClientRect(); return r.top < mid && r.bottom > mid; }));
+  }, { passive: true });
+
+  /* ---------- quiz ---------- */
+  const Q = [
+    { q: '1946년 6월 2일, 이리신광교회가 첫 예배를 드린 곳은 어디일까요?', o: ['신흥동 YMCA 회관', '창인동 석조 예배당', '마동 성전'], a: 0, e: '고현교회에서 분립한 성도들이 신흥동 YMCA 회관에서 첫 예배를 드렸습니다.' },
+    { q: '교회가 1950년에 세운 다음 세대 기관은 무엇일까요?', o: ['새빛도서관', '신광유치원', '뉴젠스쿨'], a: 1, e: '신광유치원은 1950년 6월 5일 문을 열어 76년째 아이들을 키우고 있습니다.' },
+    { q: '1977년 11월 11일, 교회당과 사택이 피해를 입은 사고는?', o: ['이리역 폭발사고', '대홍수', '화재'], a: 0, e: '이리역 폭발사고 때 본 교회당, 교육관, 목사 사택이 피해를 입었습니다.' },
+    { q: '교회가 마동 새 성전에 입당한 해는?', o: ['1996년', '2008년', '2018년'], a: 1, e: '2008년 10월 5일 마동 성전 입당예배를 드렸습니다.' },
+    { q: '창립 80주년을 맞은 교회의 표어는?', o: ['은혜 80년, 선교 100년', '믿음 80년, 소망 100년', '감사 80년, 축복 100년'], a: 0, e: '은혜로 걸어온 80년을 감사하며, 선교의 100년을 바라봅니다.' }
+  ];
+  const qz = $('#quiz');
+  if (qz) {
+    let qi = 0, score = 0;
+    const qQ = $('#quizQ'), qO = $('#quizOpts'), qF = $('#quizFb'), qN = $('#quizNext'), qS = $('#quizStep');
+    function render() {
+      const it = Q[qi]; qS.textContent = `${qi + 1} / ${Q.length}`; qQ.textContent = it.q; qF.textContent = ''; qN.hidden = true;
+      qO.innerHTML = it.o.map((o, i) => `<button data-i="${i}">${o}</button>`).join('');
+    }
+    qO.addEventListener('click', e => {
+      const b = e.target.closest('button'); if (!b || b.disabled) return;
+      const it = Q[qi], i = +b.dataset.i;
+      $$('button', qO).forEach((x, k) => { x.disabled = true; if (k === it.a) x.classList.add('ok'); });
+      if (i === it.a) { score++; qF.textContent = '정답입니다. ' + it.e; } else { b.classList.add('no'); qF.textContent = '아쉬워요. ' + it.e; }
+      qN.hidden = false; qN.textContent = qi < Q.length - 1 ? '다음 문제 →' : '결과 보기 →';
+    });
+    qN.addEventListener('click', () => {
+      if (qi < Q.length - 1) { qi++; render(); return; }
+      qS.textContent = '완료'; qQ.textContent = `${Q.length}문제 중 ${score}문제를 맞혔습니다.`;
+      qO.innerHTML = ''; qF.textContent = score === Q.length ? '여든 해의 이야기를 잘 알고 있네요. 이제 다음 100년의 이야기를 함께 써 갈 차례입니다.' : '위로 올라가 80년의 이야기를 다시 읽어 보세요. 다음 100년의 이야기는 우리가 함께 써 갑니다.';
+      qN.textContent = '다시 풀기'; qN.onclick = () => { qi = 0; score = 0; qN.onclick = null; render(); };
+    });
+    render();
+  }
 
   /* ---------- voice dialog ---------- */
   const vd = $('#vdlg');
