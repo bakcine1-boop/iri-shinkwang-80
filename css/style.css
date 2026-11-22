@@ -494,3 +494,21 @@ dialog:not([open]){display:none}
   .trio,.grow-path,.letter-row,.ng-strip{scroll-padding-left:var(--gut)}
   .swipe{display:inline;font-weight:500;letter-spacing:0;color:var(--muted);margin-left:8px;font-size:12px}
 }
+
+/* simplified blocks */
+.minis{grid-template-columns:repeat(2,minmax(0,1fr));max-width:980px}
+.docband{padding:clamp(40px,5vw,64px) 0;border-top:1px solid var(--line-n)}
+.docband-in{display:flex;gap:28px;align-items:center}
+.docband p{font-size:16px;line-height:1.8;color:var(--on-night-2);max-width:820px}
+.docband b{color:var(--on-night);font-weight:600;margin-right:10px}
+.badge-s{flex:none;font-size:12px;letter-spacing:.12em;padding:8px 12px;border:1px solid var(--brand);color:var(--brand)}
+.lists-more{margin-top:clamp(36px,5vw,56px);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+.lists-more summary{list-style:none;cursor:pointer;display:flex;justify-content:space-between;align-items:center;padding:20px 0;font-weight:600;font-size:15.5px}
+.lists-more summary::-webkit-details-marker{display:none}
+.lists-more summary em{font-style:normal;font-size:13px;color:var(--olive)}
+.lists-more[open] summary em{visibility:hidden}
+.lists-more .lists{margin:8px 0 36px}
+.gallery .ph:nth-child(8){grid-column:auto;grid-row:auto}
+.dlg .ph{aspect-ratio:3/2;height:auto;margin-top:-72px}
+.dlg .ph img{object-position:50% 30%}
+@media (max-width:640px){.docband-in{flex-direction:column;align-items:flex-start;gap:14px}.minis{grid-template-columns:1fr}}
