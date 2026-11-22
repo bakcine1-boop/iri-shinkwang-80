@@ -9,7 +9,7 @@
   if (grid && window.VOICES) {
     grid.innerHTML = VOICES.map((v, i) => `
       <button class="vc rv d${i % 3}" data-v="${v.id}" aria-haspopup="dialog" aria-label="${v.name} ${v.role} 인터뷰 더 보기">
-        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp" alt="${v.name} ${v.role}" loading="lazy"></span>
+        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp?v=5" alt="${v.name} ${v.role}" loading="lazy"></span>
         <span><span class="who"><b>${v.name} ${v.role}</b><span class="r">${v.sub}</span></span><q>${v.short}</q><span class="more">인터뷰 더 읽기 →</span></span>
       </button>`).join('');
   }
@@ -173,7 +173,7 @@
   const vd = $('#vdlg');
   function openVoice(id) {
     const v = VOICES.find(x => x.id === id); if (!v) return;
-    $('#vdlg-img').src = `img/${v.img.replace('v-','v-')}-wide.webp`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
+    $('#vdlg-img').src = `img/${v.img}-wide.webp?v=5`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
     $('#vdlg-name').textContent = `${v.name} ${v.role}`;
     $('#vdlg-role').textContent = v.sub;
     $('#vdlg-text').innerHTML = v.long.map(p => `<p>“${p.replace(/</g, '&lt;')}”</p>`).join('');
