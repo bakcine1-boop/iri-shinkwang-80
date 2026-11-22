@@ -255,4 +255,22 @@
   lb.addEventListener('touchstart', e => sx = e.touches[0].clientX, { passive: true });
   lb.addEventListener('touchend', e => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; if (Math.abs(dx) > 45) show(idx + (dx < 0 ? 1 : -1)); sx = null; });
   $$('[data-lb]').forEach(el => { el.setAttribute('role', 'button'); el.tabIndex = 0; el.addEventListener('keydown', e => { if (e.key === 'Enter') el.click(); }); });
+
+  /* ---------- 갤러리 더보기: 누를 때만 사진을 불러옴 ---------- */
+  const galMore = $('#galMore'), galTpl = $('#galExtra'), gal = $('#gallery');
+  if (galMore && galTpl && gal) {
+    const galLabel = galMore.querySelector('span'), galMoreText = galLabel.textContent;
+    galMore.addEventListener('click', () => {
+      if (galMore.getAttribute('aria-expanded') !== 'true') {
+        const frag = galTpl.content.cloneNode(true);
+        $$('[data-lb]', frag).forEach(el => { el.classList.add('added'); el.setAttribute('role', 'button'); el.tabIndex = 0; el.addEventListener('keydown', e => { if (e.key === 'Enter') el.click(); }); });
+        gal.appendChild(frag);
+        galMore.setAttribute('aria-expanded', 'true'); galLabel.textContent = '사진 접기';
+      } else {
+        $$('.ph.added', gal).forEach(el => el.remove());
+        galMore.setAttribute('aria-expanded', 'false'); galLabel.textContent = galMoreText;
+        const gh = $('.gal-head'); if (gh) gh.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'start' });
+      }
+    });
+  }
 })();
