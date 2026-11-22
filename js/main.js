@@ -9,8 +9,8 @@
   if (grid && window.VOICES) {
     grid.innerHTML = VOICES.map((v, i) => `
       <button class="vc rv d${i % 3}" data-v="${v.id}" aria-haspopup="dialog" aria-label="${v.name} ${v.role} 인터뷰 더 보기">
-        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp?v=5" alt="${v.name} ${v.role}" loading="lazy"></span>
-        <span><span class="who"><b>${v.name} ${v.role}</b><span class="r">${v.sub}</span></span><q>${v.short}</q><span class="more">인터뷰 더 읽기 →</span></span>
+        <span class="ph" style="display:block"><img src="img/${v.img}-480.webp?v=6" alt="${v.name} ${v.role}" loading="lazy"></span>
+        <span><span class="who"><b>${v.name} ${v.role}</b><span class="r">${v.sub}</span></span><q>${v.short}</q><span class="more">인터뷰 · 목소리 듣기 →</span></span>
       </button>`).join('');
   }
 
@@ -88,6 +88,7 @@
     return ytReady;
   }
   const noCC = p => { try { p.setOption('captions', 'track', {}); } catch (_) {} try { p.unloadModule('captions'); } catch (_) {} try { p.unloadModule('cc'); } catch (_) {} };
+  const fmtT = t => { t = Math.floor(+t); return Math.floor(t / 60) + ':' + String(t % 60).padStart(2, '0'); };
   async function playYT(box, start) {
     if (box._player && box._player.seekTo) { if (start != null) box._player.seekTo(+start, true); box._player.playVideo(); return; }
     box.classList.add('on'); box.removeAttribute('role'); box.removeAttribute('tabindex');
@@ -96,9 +97,9 @@
       await loadYT();
       box._player = new YT.Player(holder, {
         host: 'https://www.youtube-nocookie.com', videoId: box.dataset.yt, width: '100%', height: '100%',
-        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, cc_load_policy: 0, iv_load_policy: 3, hl: 'ko', start: start ? +start : 0 },
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, cc_load_policy: 0, iv_load_policy: 3, hl: 'ko', start: start ? Math.floor(+start) : 0 },
         events: {
-          onReady: e => { noCC(e.target); e.target.playVideo(); },
+          onReady: e => { noCC(e.target); if (start) e.target.seekTo(+start, true); e.target.playVideo(); },
           onApiChange: e => noCC(e.target),
           onStateChange: e => { if (e.data === 1) { noCC(e.target); players.forEach(p => { if (p !== e.target && p.pauseVideo) p.pauseVideo(); }); } }
         }
@@ -107,7 +108,7 @@
     } catch (err) {
       const f = document.createElement('iframe');
       f.allow = 'accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture; fullscreen'; f.allowFullscreen = true;
-      f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0&playsinline=1&cc_load_policy=0&iv_load_policy=3${start ? '&start=' + start : ''}`;
+      f.src = `https://www.youtube-nocookie.com/embed/${box.dataset.yt}?autoplay=1&rel=0&playsinline=1&cc_load_policy=0&iv_load_policy=3${start ? '&start=' + Math.floor(+start) : ''}`;
       box.innerHTML = ''; box.appendChild(f);
     }
   }
@@ -116,11 +117,24 @@
     b.addEventListener('click', go);
     b.addEventListener('keydown', e => { if (!b.classList.contains('on') && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); go(); } });
   });
-  $$('.chip').forEach(c => c.addEventListener('click', () => {
-    $$('.chip').forEach(x => x.classList.remove('on')); c.classList.add('on');
-    const box = $('#liveBox'); playYT(box, c.dataset.t);
-    const r = box.getBoundingClientRect(); if (r.top < 60 || r.top > innerHeight * .5) box.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
-  }));
+  /* 장면 바로가기: 각 묶음(data-for)이 자기 플레이어만 제어 */
+  $$('[data-for]').forEach(g => {
+    const box = $('#' + g.dataset.for); if (!box) return;
+    const btns = $$('button[data-t]', g);
+    btns.forEach(c => c.addEventListener('click', () => {
+      btns.forEach(x => x.classList.remove('on')); c.classList.add('on');
+      playYT(box, c.dataset.t);
+      const r = box.getBoundingClientRect(); if (r.top < 60 || r.bottom > innerHeight) box.scrollIntoView({ behavior: reduce ? 'auto' : 'smooth', block: 'center' });
+    }));
+  });
+  /* 다큐멘터리: 재생 중인 장 표시 */
+  const docBox = $('#docBox'), chapBtns = $$('#docChapters button[data-t]');
+  if (docBox && chapBtns.length) setInterval(() => {
+    const p = docBox._player; if (!p || !p.getCurrentTime || !p.getPlayerState || p.getPlayerState() !== 1) return;
+    const t = p.getCurrentTime(); let cur = null;
+    chapBtns.forEach(b => { if (t >= +b.dataset.t - 0.6) cur = b; });
+    chapBtns.forEach(b => b.classList.toggle('on', b === cur));
+  }, 1000);
 
   /* ---------- story scenes ---------- */
   const scenes = $$('.scene');
@@ -171,9 +185,43 @@
 
   /* ---------- voice dialog ---------- */
   const vd = $('#vdlg');
+  const DOC_ID = docBox ? docBox.dataset.yt : 'EQgJvQBJ_qs';
+  const vMedia = $('#vdlg .ph'), vImg = $('#vdlg-img'), vListen = $('#vdlg-listen'), vTime = $('#vdlg-time');
+  let vPlayer = null, curVoice = null;
+  function stopVoice() {
+    if (vPlayer) { try { vPlayer.destroy(); } catch (_) {} const k = players.indexOf(vPlayer); if (k >= 0) players.splice(k, 1); vPlayer = null; }
+    vMedia.classList.remove('playing');
+    if (!vMedia.contains(vImg)) { vMedia.innerHTML = ''; vMedia.appendChild(vImg); }
+  }
+  vListen && vListen.addEventListener('click', async () => {
+    const v = curVoice; if (!v || v.t == null) return;
+    vListen.hidden = true; vMedia.classList.add('playing'); vMedia.innerHTML = '';
+    const holder = document.createElement('div'); vMedia.appendChild(holder);
+    vd.querySelector('.dlg').scrollTop = 0;
+    try {
+      await loadYT();
+      vPlayer = new YT.Player(holder, {
+        host: 'https://www.youtube-nocookie.com', videoId: DOC_ID, width: '100%', height: '100%',
+        playerVars: { autoplay: 1, rel: 0, playsinline: 1, modestbranding: 1, cc_load_policy: 0, iv_load_policy: 3, hl: 'ko', start: Math.floor(v.t) },
+        events: {
+          onReady: e => { noCC(e.target); e.target.seekTo(v.t, true); e.target.playVideo(); },
+          onApiChange: e => noCC(e.target),
+          onStateChange: e => { if (e.data === 1) { noCC(e.target); players.forEach(p => { if (p !== e.target && p.pauseVideo) p.pauseVideo(); }); } }
+        }
+      });
+      players.push(vPlayer);
+    } catch (err) {
+      const f = document.createElement('iframe');
+      f.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen'; f.allowFullscreen = true;
+      f.src = `https://www.youtube-nocookie.com/embed/${DOC_ID}?autoplay=1&rel=0&playsinline=1&cc_load_policy=0&iv_load_policy=3&start=${Math.floor(v.t)}`;
+      vMedia.innerHTML = ''; vMedia.appendChild(f);
+    }
+  });
   function openVoice(id) {
     const v = VOICES.find(x => x.id === id); if (!v) return;
-    $('#vdlg-img').src = `img/${v.img}-wide.webp?v=5`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
+    stopVoice(); curVoice = v;
+    if (vListen) { vListen.hidden = v.t == null; if (v.t != null) { vTime.textContent = fmtT(v.t); vListen.setAttribute('aria-label', `${v.name} ${v.role}의 목소리를 다큐멘터리 ${fmtT(v.t)}부터 듣기`); } }
+    $('#vdlg-img').src = `img/${v.img}-wide.webp?v=6`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
     $('#vdlg-name').textContent = `${v.name} ${v.role}`;
     $('#vdlg-role').textContent = v.sub;
     $('#vdlg-text').innerHTML = v.long.map(p => `<p>“${p.replace(/</g, '&lt;')}”</p>`).join('');
@@ -181,6 +229,7 @@
     vd.querySelector('.dlg').scrollTop = 0;
   }
   grid && grid.addEventListener('click', e => { const b = e.target.closest('.vc'); if (b) openVoice(b.dataset.v); });
+  vd.addEventListener('close', stopVoice);
   [vd, $('#lb')].forEach(d => {
     d.addEventListener('close', () => document.body.style.overflow = '');
     d.addEventListener('click', e => { if (e.target === d || e.target.closest('[data-close]')) d.close(); });
