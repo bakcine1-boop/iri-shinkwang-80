@@ -173,7 +173,7 @@
   const vd = $('#vdlg');
   function openVoice(id) {
     const v = VOICES.find(x => x.id === id); if (!v) return;
-    $('#vdlg-img').src = `img/${v.img}-800.webp`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
+    $('#vdlg-img').src = `img/${v.img.replace('v-','v-')}-wide.webp`; $('#vdlg-img').alt = `${v.name} ${v.role}`;
     $('#vdlg-name').textContent = `${v.name} ${v.role}`;
     $('#vdlg-role').textContent = v.sub;
     $('#vdlg-text').innerHTML = v.long.map(p => `<p>“${p.replace(/</g, '&lt;')}”</p>`).join('');
