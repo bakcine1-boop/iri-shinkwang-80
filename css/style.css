@@ -148,7 +148,7 @@ figcaption{font-size:13px;color:var(--muted);margin-top:10px;line-height:1.6}
 .pst h3{font-family:var(--serif);font-weight:500;font-size:clamp(18px,1.6vw,22px);letter-spacing:-.02em;margin-top:2px}
 .pst h3 small{font-family:var(--sans);font-size:12px;color:var(--faint);font-weight:400;margin-left:4px;letter-spacing:.04em}
 .pst p{font-size:13.5px;color:var(--muted);font-variant-numeric:tabular-nums;margin-top:4px;line-height:1.55}
-.pst.big .ph{outline:1px solid var(--leaf);outline-offset:5px}
+
 .sh-foot{margin-top:clamp(40px,5vw,64px);display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);border-top:1px solid var(--line);padding-top:28px}
 .sh-foot p{font-size:15.5px;color:var(--ink-2)}
 
